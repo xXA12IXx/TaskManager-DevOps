@@ -29,7 +29,7 @@ test('CP01: registrar una tarea', async () => {
     descripcion: 'Documento del proyecto',
     prioridad: 'alta',
   });
-  expect(res.status).toBe(201);
+  toBe(500);
   expect(res.body.nombre).toBe('Elaborar documentación');
   expect(res.body.estado).toBe('pendiente');
   expect(res.body.id).toBeDefined();
