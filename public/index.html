@@ -2,11 +2,69 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TaskManager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>TaskManager</h1>
+  <header class="encabezado">
+    <h1>TaskManager</h1>
+    <p>Tareas del equipo de TechSolutions</p>
+  </header>
+
+  <main class="contenido">
+    <section class="panel panel-formulario" aria-labelledby="titulo-formulario">
+      <h2 id="titulo-formulario">Nueva tarea</h2>
+
+      <form id="form-tarea" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" maxlength="120" autocomplete="off">
+          <p class="error-campo" id="error-nombre" role="alert" hidden></p>
+        </div>
+
+        <div class="campo">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="prioridad">Prioridad</label>
+          <select id="prioridad" name="prioridad">
+            <option value="alta">Alta</option>
+            <option value="media" selected>Media</option>
+            <option value="baja">Baja</option>
+          </select>
+        </div>
+
+        <div class="acciones-form">
+          <button type="submit" class="boton boton-principal" id="btn-guardar">Guardar tarea</button>
+          <button type="button" class="boton boton-secundario" id="btn-cancelar" hidden>Cancelar edición</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel panel-lista" aria-labelledby="titulo-lista">
+      <div class="cabecera-lista">
+        <h2 id="titulo-lista">Tareas</h2>
+        <div class="filtros" role="group" aria-label="Filtrar por estado" id="filtros">
+          <button type="button" class="filtro activo" data-filtro="todas" aria-pressed="true">Todas <span class="contador" id="cont-todas">0</span></button>
+          <button type="button" class="filtro" data-filtro="pendiente" aria-pressed="false">Pendientes <span class="contador" id="cont-pendiente">0</span></button>
+          <button type="button" class="filtro" data-filtro="en proceso" aria-pressed="false">En proceso <span class="contador" id="cont-en-proceso">0</span></button>
+          <button type="button" class="filtro" data-filtro="terminada" aria-pressed="false">Terminadas <span class="contador" id="cont-terminada">0</span></button>
+        </div>
+      </div>
+
+      <ul class="lista-tareas" id="lista-tareas"></ul>
+      <p class="vacio" id="vacio" hidden></p>
+    </section>
+  </main>
+
+  <div class="mensaje" id="mensaje" role="status" aria-live="polite" hidden></div>
+
   <script src="js/app.js"></script>
 </body>
 </html>
