@@ -105,3 +105,9 @@ test('una prioridad no válida es rechazada', async () => {
   const res = await crearTarea({ nombre: 'Tarea', prioridad: 'urgentisima' });
   expect(res.status).toBe(400);
 });
+
+test('CP12: una descripción que no es texto es rechazada', async () => {
+  const res = await crearTarea({ nombre: 'Tarea', descripcion: { a: 1 } });
+  expect(res.status).toBe(400);
+  expect(res.body.error).toBeDefined();
+});
