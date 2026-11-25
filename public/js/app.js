@@ -22,6 +22,9 @@ app.post('/api/tareas', (req, res) => {
   if (!nombre || !nombre.trim()) {
     return res.status(400).json({ error: 'El nombre es obligatorio' });
   }
+  if (typeof descripcion !== 'string') {
+  return res.status(400).json({ error: 'La descripción debe ser texto' });
+}
   if (!PRIORIDADES.includes(prioridad)) {
     return res.status(400).json({ error: 'Prioridad no válida' });
   }
