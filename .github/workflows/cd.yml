@@ -1,0 +1,27 @@
+name: Entrega Continua
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  entrega:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: TaskManager-v1
+          if-no-files-found: error
+          path: |
+            app.js
+            db.js
+            server.js
+            package.json
+            package-lock.json
+            public/
+            README.md
